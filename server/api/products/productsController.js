@@ -1,14 +1,15 @@
-var http = require('http');
+var products = require(__dirname + "/../../../db/products");
 
 module.exports = {
 
   products: function(req, res) {
-    console.log("products called");
-    res.json([{ product: "underpants" }, { product: "shoes" }, { product: "tshirt" }, { product: "skirt" }]);
+    res.json([products]);
   },
 
   product: function(req, res) {
-    res.json({ product: "underpants" });
+    var id = req.params.id;
+    var product = products[id] || {};
+    res.json(product);
   }
 
 };
