@@ -13,6 +13,7 @@ var logger = require('morgan');
 var ejs = require('ejs');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var db = require(__dirname + "/db");
 
 var app = express();
 

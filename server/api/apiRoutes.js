@@ -15,6 +15,8 @@ router.get('/products', productController.products);
 router.get('/product/:id', productController.product);
 router.get('/products/:id', productController.product);
 
+router.post('/products', productController.insert);
+
 //categories
 router.get('/categories', categoryController.all);
 

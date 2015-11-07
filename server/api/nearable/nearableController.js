@@ -1,5 +1,4 @@
 var products = require(__dirname + "/../../../db/products");
-var categories = require(__dirname + "/../../../db/categories");
 var p = require(__dirname + '/../../pusher');
 
 var getProductsFromIdList = function getProductsFromIdList (array) {
