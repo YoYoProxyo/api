@@ -9,14 +9,6 @@ module.exports = {
 
   product: function(req, res) {
     res.json({ product: "underpants" });
-  },
-
-  post: function(req, res) {
-    res.json({ product: "underpants" });
-  },
-
-  put: function (req, res) {
-    res.json({ product: "underpants" });
   }
 
 };

@@ -1,10 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Home</title>
+  <title>YoYoProxio</title>
+  <script src="https://js.pusher.com/3.0/pusher.min.js"></script>
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script>
+    // Enable pusher logging - don't include this in production
+    Pusher.log = function(message) {
+      if (window.console && window.console.log) {
+        window.console.log(message);
+      }
+    };
+
+    var pusher = new Pusher('b3f1f71161822941f884', {
+      encrypted: true
+    });
+
+  </script>
+  <body>
+    <h1>YoYoProxio Admin</h1>
+    <input id="message" type="text" />
+    <section id="messages"></section>
+
+    <script>
+      //api endpoint
+      var url = "http://localhost:3000/api/nearable";
+      //pusher channel and event names
+      var channelName = "user-activity";
+      var eventName = "user-nearable";
+
+      //UI
+      var messages = document.querySelector("section");
+      var input = document.querySelector("input");
+      var channel = pusher.subscribe(channelName);
+
+      var arrayToObject = function (array) {
+        var result = {};
+        array.forEach(function (value, key) {
+          result[value] = value;
+        });
+        return result;
+      };
+
+      channel.bind(eventName, function(data) {
+        var p = document.createElement("p");
+        p.innerHTML = data.message;
+        messages.appendChild(p);
+      });
+
+      //TODO: this will be triggered by the app, pushing the closest nearables
+      input.addEventListener("keyup", function (event) {
+        var isEnterKey = (event.which === 13);
+        if (isEnterKey) {
+          var data = "/" + event.target.value.replace(" ", "").split(",").join("/");
+          $.ajax({
+            url: url + data,
+            success: function (result) {
+              console.log(result);
+            },
+            dataType: "json"
+          });
+          event.target.value = "";
+        }
+      });
+
+    </script>
+
+  </body>
 </head>
-<body>
-  Welcome
-</body>
-</html>

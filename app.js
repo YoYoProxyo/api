@@ -3,6 +3,9 @@ require('dotenv').config({
   path: ".env"
 });
 
+//include pusher
+require("./server/pusher");
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -27,7 +30,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 /**
  * Homepage
  */
-
 app.get('/', function (req, res) {
   res.render('home');
 });
