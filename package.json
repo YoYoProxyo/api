@@ -1,0 +1,57 @@
+{
+  "name": "npm-script",
+  "version": "1.0.0",
+  "description": "Proxio",
+  "author": "Proxio",
+  "contributors": [
+    {
+      "name": "Mark Robson",
+      "email": "mark.o.robson@gmail.com"
+    },
+    {
+      "name": "Lyndsay Thackrah",
+      "email": "lyndsaythackrah@gmail.com"
+    },
+    {
+      "name": "Thomas Ridd",
+      "email": ""
+    }
+  ],
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "npm run lint && mocha",
+    "lint": "jshint app.js server/*/*.js client/js/*.js",
+    "build-css": "node-sass --include-path scss client/scss/main.scss public/css/style.css",
+    "build-js": "browserify client/js/main.js > public/js/app.js",
+    "watch-test": "npm run lint & mocha -w",
+    "watch-css": "nodemon -e scss -x 'npm run build-css'",
+    "watch-js": "nodemon --watch client/js -x 'npm run build-js'",
+    "watch-server": "nodemon --watch app.js --watch server",
+    "dev": "npm run watch-js & npm run watch-css & npm run watch-test & npm run watch-server"
+  },
+  "keywords": [
+    "npm",
+    "scripts"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "browserify": "^12.0.1",
+    "cookie-parser": "^1.4.0",
+    "dotenv": "^1.2.0",
+    "ejs": "^2.3.4",
+    "express": "^4.13.3",
+    "mongoose": "^4.2.4",
+    "morgan": "^1.6.1",
+    "nodemon": "^1.4.1",
+    "path": "^0.12.7",
+    "serve-favicon": "^2.3.0"
+  },
+  "devDependencies": {
+    "node-sass": "^3.4.1",
+    "jshint": "^2.8.0",
+    "mocha": "^2.3.3",
+    "should": "^7.1.1"
+  }
+}
