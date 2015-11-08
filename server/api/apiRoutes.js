@@ -18,7 +18,8 @@ router.get('/products/:id', productController.product);
 router.post('/products', productController.insert);
 
 //categories
-router.get('/categories', categoryController.all);
+router.get('/categories', categoryController.categories);
+router.get('/categories/:id', categoryController.category);
 
 //Devices close to user
 router.get('/nearable/?', nearableController.queryAll);

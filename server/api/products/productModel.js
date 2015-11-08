@@ -12,8 +12,8 @@ module.exports = function(db) {
      * getProductByIdentifier
      * @param {number} identifier id number
      */
-    getProductByIdentifier: function (identifier, callback) {
-      Product.findOne({ number: identifier }).exec(callback);
+    getProductById: function (id, callback) {
+      Product.findOne({ _id: id }).exec(callback);
     },
 
     /**

@@ -13,7 +13,7 @@ module.exports = {
 
     if (req.params.id) {
 
-      productModel.getProductByIdentifier(req.params.id, function (err, product) {
+      productModel.getProductById(req.params.id, function (err, product) {
         if (err) {
           res.json(err);
         } else {
@@ -28,8 +28,7 @@ module.exports = {
 
   insert: function (req, res) {
 
-    productModel.getProductByIdentifier(req.body.number, function (err, result) {
-      console.log(result);
+    productModel.getProductById(req.body.number, function (err, result) {
       if (!!!result) {
         productModel.insert(req.body, function (err, result) {
           if (err) {

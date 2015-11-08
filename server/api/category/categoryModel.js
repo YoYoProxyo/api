@@ -4,6 +4,10 @@ module.exports = function(db) {
 
   return {
 
+    all: function (callback) {
+      Category.find().exec(callback);
+    },
+
     /**
      * getCategoryById
      * @param  {string} id
@@ -20,6 +24,10 @@ module.exports = function(db) {
           done(null, category);
         }
       });
+    },
+
+    insert: function (category, callback) {
+      Category.create(category, callback);
     }
 
   };

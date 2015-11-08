@@ -1,14 +1,27 @@
-var categories = require(__dirname + "/../../../db/categories");
 var categoryModel = require(__dirname + "/categoryModel")(require(__dirname + "/../../../db"));
 
 module.exports = {
 
-  all: function (req, res) {
-    res.json(categories);
+  categories: function(req, res) {
+    categoryModel.all(function (err, result) {
+      res.json(result);
+    });
   },
 
-  id: function (req, res) {
-    
+  category: function (req, res) {
+    if (req.params.id) {
+
+      categoryModel.getCategoryById(req.params.id, function (err, category) {
+        if (err) {
+          res.json(err);
+        } else {
+          res.json(category);
+        }
+      });
+
+    } else {
+      res.json({});
+    }
   }
 
 };
