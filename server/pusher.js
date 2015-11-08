@@ -1,15 +1,15 @@
 var Pusher = require('pusher');
 var pusher = new Pusher({
-  appId: '152797',
-  key: 'b3f1f71161822941f884',
-  secret: '8896a0335a7f53b55be9',
+  appId: '146512',
+  key: '4b524aba332c3314b072',
+  secret: 'a7fb53b25d7a05f7029d',
   encrypted: true
 });
 
 var channels = {
   user: {
-    channelName: "user-activity",
-    eventName: "user-nearable"
+    channelName: "my_channel",
+    eventName: "new_message"
   },
   transactions: {
     channelName: "",
@@ -18,20 +18,6 @@ var channels = {
 };
 
 pusher.port = 443;
-
-var count = 0;
-
-var test = setInterval(function () {
-  if (count === 10) {
-    clearInterval(test);
-    return;
-  }
-  count++;
-  pusher.trigger(channels.user.channelName, channels.user.eventName, {
-    "message": "hello " + count + " times"
-  });
-
-}, 1000);
 
 module.exports = {
   pusher: pusher,

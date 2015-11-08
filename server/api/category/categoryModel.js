@@ -13,15 +13,15 @@ module.exports = function(db) {
      * @param  {string} id
      * @return {}    [description]
      */
-    getCategoryById: function (id) {
+    getCategoryById: function (id, callback) {
       Category.findOne({
-        id: id
+        _id: id
       })
       .exec(function (err, category){
         if (err){
-          done(err);
+          callback(err);
         } else {
-          done(null, category);
+          callback(null, category);
         }
       });
     },

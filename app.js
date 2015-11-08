@@ -36,6 +36,17 @@ app.get('/', function (req, res) {
 });
 
 /**
+ * Admin
+ */
+app.get('/admin', function (req, res) {
+  res.render('admin');
+});
+
+app.get('/products', function (req, res) {
+  res.render('products');
+});
+
+/**
  * API
  */
 app.use('/api', require('./server/api/apiRoutes'));

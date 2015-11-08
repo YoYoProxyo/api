@@ -1,12 +1,10 @@
 var mongoose = require('mongoose');
 
 module.exports = mongoose.Schema({
-  tag: String,
-  name: String,
   image: String,
   manufacturer: String,
   colour: String,
-  price: Number,
-  size: "",
+  price: String,
+  size: String,
   category: { type: mongoose.Schema.Types.ObjectId, ref: "Category"}
 });

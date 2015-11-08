@@ -1,4 +1,5 @@
 var products = require(__dirname + "/../../../db/products");
+var tagModel = require(__dirname + "/nearableModel")(require(__dirname + "/../../../db"));
 var p = require(__dirname + '/../../pusher');
 
 var getProductsFromIdList = function getProductsFromIdList (array) {
@@ -19,6 +20,36 @@ var updatePusher = function (pusher, channel, event, message) {
 };
 
 module.exports = {
+
+  insert: function (req, res) {
+    tagModel.insert(req.body, function (error, tag) {
+      if (error) {
+        res.json(error);
+      } else {
+        res.json(tag);
+      }
+    });
+  },
+
+  getTagById: function (req, res) {
+    tagModel.getTagById(req.params.id, function (error, tag) {
+      if (error) {
+        res.json(error);
+      } else {
+        res.json(tag);
+      }
+    });
+  },
+
+  getTags: function (req, res) {
+    tagModel.all(function (error, tags) {
+      if (error) {
+        res.json(error);
+      } else {
+        res.json(tags);
+      }
+    });
+  },
 
   /**
    * Get all products based on wearable ids. based on url path /id/id/id
