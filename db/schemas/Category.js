@@ -53,4 +53,8 @@ Category.add = function (categoryObject) {
 
 };
 
+Category.delete = function (category) {
+  return Category.findOne(category).remove().exec();
+};
+
 module.exports = Category;

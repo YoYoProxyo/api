@@ -44,4 +44,8 @@ Product.add = function (productObject) {
   return promise;
 };
 
+Product.delete = function (product) {
+  return Product.findOne(product).remove().exec();
+};
+
 module.exports = Product;

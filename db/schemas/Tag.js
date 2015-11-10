@@ -46,6 +46,10 @@ Tag.add = function (tagObject) {
 
 };
 
+Tag.delete = function (tag) {
+  return Tag.findOne(tag).remove().exec();
+};
+
 Tag.assignProduct = function (tag, product) {
   
 };

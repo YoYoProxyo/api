@@ -19,6 +19,9 @@ router.get('/products/:id', productController.product);
 router.post('/products', productController.insert);
 router.post('/product', productController.insert);
 
+router.delete('/product/:id', productController.remove);
+router.delete('/products/:id', productController.remove);
+
 //categories
 router.get('/categories', categoryController.categories);
 router.get('/category', categoryController.categories);
@@ -36,6 +39,9 @@ router.get('/tag/:id', tagController.tag);
 
 router.post('/tag', tagController.insert);
 router.post('/tags', tagController.insert);
+
+router.delete('/tag/:id', tagController.remove);
+router.delete('/tags/:id', tagController.remove);
 
 //Devices close to user
 router.get('/tags?', tagController.queryAll);

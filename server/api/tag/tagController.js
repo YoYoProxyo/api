@@ -42,6 +42,16 @@ module.exports = {
       });
   },
 
+  remove: function (req, res) {
+    tagModel.delete({ _id: req.params.id })
+      .then(function (result) {
+        res.json(result || {});
+      })
+      .then(null, function (error) {
+        res.json({ error : error.message });
+      });
+  },
+
   insert: function (req, res) {
     tagModel.add(req.body)
       .then(function (tag) {
