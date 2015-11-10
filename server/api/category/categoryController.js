@@ -1,37 +1,40 @@
-var categoryModel = require(__dirname + "/categoryModel")(require(__dirname + "/../../../db"));
+var categoryModel = require(__dirname + "/../../../db").Category;
 
 module.exports = {
 
   categories: function(req, res) {
-    categoryModel.all(function (err, result) {
-      res.json(result);
-    });
+
+    categoryModel.all()
+      .then(function (result) {
+        res.json(result);
+      });
+
   },
 
   category: function (req, res) {
+
     if (req.params.id) {
-
-      categoryModel.getCategoryById(req.params.id, function (err, category) {
-        if (err) {
-          res.json(err);
-        } else {
+      categoryModel.one({ _id: req.params.id })
+        .then(function (category) {
           res.json(category);
-        }
-      });
-
+        }).then(null, function (error) {
+          res.json({ error: error.message });
+        });
     } else {
       res.json({});
     }
+
   },
 
   insert: function (req, res) {
-    categoryModel.insert(req.body, function (error, category) {
-      if (error) {
-        res.json(error);
-      } else {
+
+    categoryModel.add(req.body)
+      .then(function (category) {
         res.json(category);
-      }
-    });
-  },
+      }).then(null, function (error) {
+        res.json(error);
+      });
+
+  }
 
 };

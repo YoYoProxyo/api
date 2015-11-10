@@ -1,4 +1,3 @@
-var products = require(__dirname + "/../../../db/products");
 var tagModel = require(__dirname + "/nearableModel")(require(__dirname + "/../../../db"));
 var p = require(__dirname + '/../../pusher');
 

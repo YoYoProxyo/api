@@ -1,47 +1,46 @@
 "use strict";
-var productModel = require(__dirname + "/productModel")(require(__dirname + "/../../../db"));
+var productModel = require(__dirname + "/../../../db").Product;
 
 module.exports = {
 
   products: function(req, res) {
-    productModel.all(function (err, result) {
-      res.json(result);
-    });
+
+    productModel.all()
+      .then(function (result) {
+        res.json(result);
+      })
+      .then(null, function (error) {
+        res.json({ error: error.message });
+      });
+
   },
 
   product: function(req, res) {
 
     if (req.params.id) {
 
-      productModel.getProductById(req.params.id, function (err, product) {
-        if (err) {
-          res.json(err);
-        } else {
+      productModel.one(req.params.id)
+        .then(function (product) {
           res.json(product);
-        }
-      });
+        })
+        .then(null, function (error) {
+          res.json({ error : error });
+        });
 
     } else {
       res.json({});
     }
+
   },
 
   insert: function (req, res) {
 
-    productModel.getProductById(req.body.number, function (err, result) {
-      if (!!!result) {
-        productModel.insert(req.body, function (err, result) {
-          if (err) {
-            res.json(err);
-          } else {
-            res.json(result);
-          }
-        });
-      } else {
-        res.json(result);
-      }
-
-    });
+    productModel.add(req.body)
+      .then(function (product) {
+        res.json(product);
+      }).then(null, function (error) {
+        res.json(error);
+      });
 
   }
 
