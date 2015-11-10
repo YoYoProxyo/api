@@ -19,6 +19,11 @@ router.get('/products/:id', productController.product);
 router.post('/products', productController.insert);
 router.post('/product', productController.insert);
 
+router.put('/product', productController.update);
+router.put('/products', productController.update);
+router.put('/product/:id', productController.updateById);
+router.put('/products/:id', productController.updateById);
+
 router.delete('/product/:id', productController.remove);
 router.delete('/products/:id', productController.remove);
 
@@ -28,6 +33,11 @@ router.get('/category', categoryController.categories);
 router.get('/category/:id', categoryController.category);
 router.get('/categories/:id', categoryController.category);
 
+router.put('/category', categoryController.update);
+router.put('/categories', categoryController.update);
+router.put('/category/:id', categoryController.updateById);
+router.put('/categories/:id', categoryController.updateById);
+
 router.post('/categories', categoryController.insert);
 router.post('/category', categoryController.insert);
 
@@ -36,6 +46,11 @@ router.get('/tags', tagController.tags);
 router.get('/tag', tagController.tags);
 router.get('/tags/:id', tagController.tag);
 router.get('/tag/:id', tagController.tag);
+
+router.put('/tags', tagController.update);
+router.put('/tag', tagController.update);
+router.put('/tag/:id', tagController.updateById);
+router.put('/tag/:id', tagController.updateById);
 
 router.post('/tag', tagController.insert);
 router.post('/tags', tagController.insert);

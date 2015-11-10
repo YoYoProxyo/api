@@ -42,6 +42,28 @@ module.exports = {
       });
   },
 
+  update: function (req, res) {
+    tagModel.put(req.body)
+      .then(function (result) {
+        res.json(result);
+      })
+      .then(null, function (error) {
+        res.json({ error : error.message });
+      });
+  },
+
+  updateById: function (req, res) {
+    var tagObject = req.body;
+    tagObject._id = tagObject._id || req.params.id;
+    tagModel.put(tagObject)
+      .then(function (result) {
+        res.json(result);
+      })
+      .then(null, function (error) {
+        res.json({ error : error.message });
+      });
+  },
+
   remove: function (req, res) {
     tagModel.delete({ _id: req.params.id })
       .then(function (result) {

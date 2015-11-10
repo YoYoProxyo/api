@@ -44,6 +44,18 @@ Product.add = function (productObject) {
   return promise;
 };
 
+Product.put = function (product) {
+  if (product._id) {
+    return Product.findByIdAndUpdate(product._id, product).exec();
+  } else {
+    return Product.add(product);
+  }
+};
+
+Product.updateById = function (product) {
+  return Product.findByIdAndUpdate(product._id, product).exec();
+};
+
 Product.delete = function (product) {
   return Product.findOne(product).remove().exec();
 };

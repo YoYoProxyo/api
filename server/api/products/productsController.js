@@ -33,6 +33,28 @@ module.exports = {
 
   },
 
+  update: function (req, res) {
+    productModel.put(req.body)
+      .then(function (result) {
+        res.json(result);
+      })
+      .then(null, function (error) {
+        res.json({ error : error.message });
+      });
+  },
+
+  updateById: function (req, res) {
+    var productObject = req.body;
+    productObject._id = productObject._id || req.params.id;
+    productModel.put(productObject)
+      .then(function (result) {
+        res.json(result);
+      })
+      .then(null, function (error) {
+        res.json({ error : error.message });
+      });
+  },
+
   remove: function (req, res) {
     productModel.delete({ _id: req.params.id })
       .then(function (result) {

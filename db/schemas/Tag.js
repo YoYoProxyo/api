@@ -46,6 +46,19 @@ Tag.add = function (tagObject) {
 
 };
 
+Tag.put = function (tag) {
+  if (tag._id) {
+    return Tag.findByIdAndUpdate(tag._id, tag).exec();
+  } else {
+    return Tag.add(tag);
+  }
+};
+
+Tag.updateById = function (tag) {
+  return Tag.findByIdAndUpdate(tag._id, tag).exec();
+};
+
+
 Tag.delete = function (tag) {
   return Tag.findOne(tag).remove().exec();
 };

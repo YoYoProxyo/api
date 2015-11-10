@@ -53,6 +53,18 @@ Category.add = function (categoryObject) {
 
 };
 
+Category.put = function (category) {
+  if (category._id) {
+    return Category.findByIdAndUpdate(category._id, category).exec();
+  } else {
+    return Category.add(category);
+  }
+};
+
+Category.updateById = function (category) {
+  return Category.findByIdAndUpdate(category._id, category).exec();
+};
+
 Category.delete = function (category) {
   return Category.findOne(category).remove().exec();
 };
