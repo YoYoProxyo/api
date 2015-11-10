@@ -3,7 +3,7 @@ var router = express.Router();
 var productController = require('./products/productsController');
 var categoryController = require('./category/categoryController');
 var customerController = require('./customer/customerController');
-var nearableController = require('./nearable/nearableController');
+var tagController = require('./tag/tagController');
 
 //API Documentation
 router.get('/', function (req, res) {
@@ -28,17 +28,18 @@ router.get('/categories/:id', categoryController.category);
 router.post('/categories', categoryController.insert);
 router.post('/category', categoryController.insert);
 
-//devices
-router.get('/tag/:id', nearableController.getTagById);
-router.get('/tags/:id', nearableController.getTagById);
-router.get('/tags', nearableController.getTags);
-router.get('/tag', nearableController.getTags);
+//tags/nearables
+router.get('/tags', tagController.tags);
+router.get('/tag', tagController.tags);
+router.get('/tags/:id', tagController.tag);
+router.get('/tag/:id', tagController.tag);
 
-router.post('/tag', nearableController.insert);
-router.post('/tags', nearableController.insert);
+router.post('/tag', tagController.insert);
+router.post('/tags', tagController.insert);
 
 //Devices close to user
-router.get('/nearable/?', nearableController.queryAll);
-router.get('/nearable/*', nearableController.getAll);
+router.get('/tags?', tagController.queryAll);
+router.get('/tag/*', tagController.tags);
+router.get('/tags/*', tagController.tags);
 
 module.exports = router;

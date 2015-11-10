@@ -1,4 +1,4 @@
-var tagModel = require(__dirname + "/nearableModel")(require(__dirname + "/../../../db"));
+var tagModel = require(__dirname + "/../../../db").Tag;
 var p = require(__dirname + '/../../pusher');
 
 var getProductsFromIdList = function getProductsFromIdList (array) {
@@ -20,34 +20,36 @@ var updatePusher = function (pusher, channel, event, message) {
 
 module.exports = {
 
+  tags: function (req, res) {
+
+    tagModel.all()
+      .then(function (tags) {
+        res.json(tags || {});
+      })
+      .then(null, function (error) {
+        res.json({ error : error.message });
+      });
+
+  },
+
+  tag: function (req, res) {
+    tagModel.one(req.params.id)
+      .then(function (tag) {
+        res.json(tag);
+      })
+      .then(null, function (error) {
+        res.json({ error : error.message });
+      });
+  },
+
   insert: function (req, res) {
-    tagModel.insert(req.body, function (error, tag) {
-      if (error) {
-        res.json(error);
-      } else {
-        res.json(tag);
-      }
-    });
-  },
-
-  getTagById: function (req, res) {
-    tagModel.getTagById(req.params.id, function (error, tag) {
-      if (error) {
-        res.json(error);
-      } else {
-        res.json(tag);
-      }
-    });
-  },
-
-  getTags: function (req, res) {
-    tagModel.all(function (error, tags) {
-      if (error) {
-        res.json(error);
-      } else {
-        res.json(tags);
-      }
-    });
+    tagModel.add(req.body)
+      .then(function (tag) {
+        res.json(tag || {});
+      })
+      .then(null, function (error) {
+        res.json({ error : error.message });
+      });
   },
 
   /**

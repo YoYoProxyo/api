@@ -6,7 +6,7 @@ module.exports = {
 
     categoryModel.all()
       .then(function (result) {
-        res.json(result);
+        res.json(result || {});
       });
 
   },
@@ -16,7 +16,7 @@ module.exports = {
     if (req.params.id) {
       categoryModel.one({ _id: req.params.id })
         .then(function (category) {
-          res.json(category);
+          res.json(category || {});
         }).then(null, function (error) {
           res.json({ error: error.message });
         });
@@ -30,9 +30,9 @@ module.exports = {
 
     categoryModel.add(req.body)
       .then(function (category) {
-        res.json(category);
+        res.json(category || {});
       }).then(null, function (error) {
-        res.json(error);
+        res.json({ error : error.message });
       });
 
   }
