@@ -14,7 +14,7 @@
     },
     {
       "name": "Thomas Ridd",
-      "email": ""
+      "email": "twridd@gmail.com"
     }
   ],
   "main": "app.js",
@@ -28,7 +28,7 @@
     "watch-css": "nodemon -e scss -x 'npm run build-css'",
     "watch-js": "nodemon --watch client/js -x 'npm run build-js'",
     "watch-server": "nodemon --watch app.js --watch server",
-    "dev": "npm run watch-js & npm run watch-css & npm run watch-test & npm run watch-server"
+    "dev": "npm run watch-js & npm run watch-css & npm run watch-server & npm run watch-test"
   },
   "keywords": [
     "npm",
@@ -50,9 +50,10 @@
     "serve-favicon": "^2.3.0"
   },
   "devDependencies": {
-    "node-sass": "^3.4.1",
     "jshint": "^2.8.0",
     "mocha": "^2.3.3",
-    "should": "^7.1.1"
+    "node-sass": "^3.4.1",
+    "should": "^7.1.1",
+    "supertest": "^1.1.0"
   }
 }

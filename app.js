@@ -13,7 +13,6 @@ var logger = require('morgan');
 var ejs = require('ejs');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var db = require(__dirname + "/db");
 
 var app = express();
 
@@ -29,22 +28,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 /**
- * Homepage
+ * Pages
  */
-app.get('/', function (req, res) {
-  res.render('home');
-});
-
-/**
- * Admin
- */
-app.get('/admin', function (req, res) {
-  res.render('admin');
-});
-
-app.get('/products', function (req, res) {
-  res.render('products');
-});
+app.use("/", require('./server'));
 
 /**
  * API
