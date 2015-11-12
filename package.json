@@ -24,7 +24,7 @@
     "lint": "jshint app.js server/*/*.js client/js/*.js",
     "build-css": "node-sass --include-path scss client/scss/main.scss public/css/style.css",
     "build-js": "browserify client/js/main.js > public/js/app.js",
-    "watch-test": "npm run lint & mocha -w",
+    "watch-test": "npm run lint & mocha --recursive -w",
     "watch-css": "nodemon -e scss -x 'npm run build-css'",
     "watch-js": "nodemon --watch client/js -x 'npm run build-js'",
     "watch-server": "nodemon --watch app.js --watch server",

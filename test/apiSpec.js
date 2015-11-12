@@ -1,5 +1,5 @@
 var request = require('supertest');
-request = request('http://localhost:3000');
+request = request('http://localhost:' + process.env.PORT);
 
 describe("api", function () {
 
@@ -9,13 +9,6 @@ describe("api", function () {
       .expect('Content-Type', /html/)
       .expect(200);
 
-  });
-
-  it("should return category json", function () {
-    request
-      .get('/api/category')
-      .expect('Content-Type', /json/)
-      .expect(200);
   });
 
 });
