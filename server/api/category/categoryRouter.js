@@ -6,10 +6,10 @@ categoryRouter.get('/', categoryController.categories)
   .post('/', categoryController.insert)
   .put('/', categoryController.update);
 
-categoryRouter.get('/:id', categoryController.category)
-  .put('/:id', categoryController.updateById);
+categoryRouter
+  .get('/:id', categoryController.category)
+  .put('/:id', categoryController.updateById)
+  .delete('/:id', categoryController.remove);
 
-categoryRouter.get('/:id', categoryController.category)
-  .put('/:id', categoryController.updateById);
 
 module.exports = categoryRouter;
